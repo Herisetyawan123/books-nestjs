@@ -11,7 +11,6 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { filter } from 'rxjs';
 import { BooksService } from './books.service';
 import { createBookDto } from './dto/create-books.dto';
 import { filterBookDto } from './dto/filter-book.dto';

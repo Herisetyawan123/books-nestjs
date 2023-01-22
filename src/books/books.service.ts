@@ -2,11 +2,9 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { v4 as uuid4 } from 'uuid';
 import { createBookDto } from './dto/create-books.dto';
 import { filterBookDto } from './dto/filter-book.dto';
-import { BookRepository } from './repository/book.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from './entity/book.entity';
 import { Repository } from 'typeorm';
-import { create } from 'domain';
 
 @Injectable()
 export class BooksService {

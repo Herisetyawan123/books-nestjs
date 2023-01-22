@@ -14,13 +14,12 @@ import {
 import { BooksService } from './books.service';
 import { createBookDto } from './dto/create-books.dto';
 import { filterBookDto } from './dto/filter-book.dto';
+import UpdateBookDto from './dto/update-books.dto';
 
 @Controller('books')
 export class BooksController {
-  private booksService: BooksService;
-  constructor(private bookService: BooksService) {
-    this.booksService = bookService;
-  }
+  constructor(private booksService: BooksService) {}
+
   @Get()
   getAll(@Query() filter: filterBookDto) {
     return this.booksService.getAllBook(filter);
@@ -32,14 +31,14 @@ export class BooksController {
   @Post()
   @UsePipes(ValidationPipe)
   createBook(@Body() payload: createBookDto) {
-    return this.bookService.createBook(payload);
+    return this.booksService.createBook(payload);
   }
   @Put('/:id')
-  updateBook(@Param('id') id: string, @Body() payload: createBookDto) {
-    return this.bookService.updateBook(id, payload);
+  updateBook(@Param('id') id: string, @Body() payload: UpdateBookDto) {
+    return this.booksService.updateBook(id, payload);
   }
   @Delete('/:id')
   deleteBook(@Param('id') id: string) {
-    return this.bookService.deleteBook(id);
+    return this.booksService.deleteBook(id);
   }
 }

@@ -5,10 +5,10 @@ import { filterBookDto } from './dto/filter-book.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from './entity/book.entity';
 import { Repository } from 'typeorm';
+import UpdateBookDto from './dto/update-books.dto';
 
 @Injectable()
 export class BooksService {
-  private books: any[] = [];
   // private bookRepository: BookRepository;
   constructor(
     @InjectRepository(Book)
@@ -29,10 +29,11 @@ export class BooksService {
     return {};
   }
 
-  async updateBook(id, payload: createBookDto) {
+  async updateBook(id, payload: UpdateBookDto) {
     await this.bookRepository.update(id, payload);
     const updatedBook = await this.bookRepository.findBy({ id });
-    if (updatedBook) {
+    console.log(updatedBook);
+    if (updatedBook.length !== 0) {
       return {
         message: 'Berhasil dirubah',
         data: updatedBook,
